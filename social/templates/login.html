@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% block body %}
+<body>
+<!-- to display the error message. -->
+{% if messages %}
+{% for message in messages %}
+<div class = "alert alert-warning" align="center" >
+    <h2>{{ message }}</h2>
+    </div>
+{% endfor %}
+{% endif %}
+<div  class="container" align="center">
+    <h1>LOGIN</h1>
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="SignIn"/>
+</form>
+</div><br />
+<div align="center">
+    <h1>OR</h1><br />
+    <h2>Sign in using Your Facebook Account.</h2><br />
+    <h1><a href="{% provider_login_url 'facebook' %}" >Facebook </a></h1>
+</div>
+</body>
+{% endblock %}
