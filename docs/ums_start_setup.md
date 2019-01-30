@@ -8,9 +8,10 @@ Open command prompt and create a new folder User Management System and inside th
 For creating the Main project folder.
 __Syntax:__ 
 ```sh
-django-admin startproject social
+django-admin startproject ums
 ```
-![Creating Project](./images/1.png)
+![Creating Project]
+(./images/1.png)
 
 ### Migration and Running our server.
 
@@ -21,13 +22,12 @@ New project Structure.
 ### __Migrations:__ 
 To map the models with the database we need to call the migrations method.
 We are using the pycharm terminal for this. 
-Refer to the below image.
-
 __Syntax:__ 
 ```sh
 python manage.py migrate.
 ```
 This command will map the inbuilt models like auth, admin etc with the database.
+![Migration](./images/2.png)
 
 ### __Running the server:__ 
 To run the server user the runserserver method.
@@ -35,10 +35,11 @@ __Syntax:__
 ```sh
 python manage.py runserver
 ```
+![Running the server](./images/3.png)
+
 >Note: To close the running server use Ctrl + break inside the terminal.
 
 ### __Creating Super user & Accessing the admin Interface:__
-
 
 #### __SuperUser:__ 
 This will allow us to access the inbuilt admin panel of our webapp.
@@ -47,14 +48,8 @@ __Syntax:__
 ```sh
  python manage.py createsuperuser
  ```
-
 Fill in the credentials for your superuser/admin account.
-
-
-
-
-
-
+![Superuser](./images/4.png)
 
 
 ### __Login the admin interface:__
@@ -63,11 +58,12 @@ Open the admin interface by running the server and inside the browser type in th
 
 Login using your superuser username and password:
 
+![Admin Interface](./images/5.png)
 
+### __Creating the template folder:__
 
-
-
-> Note: Create a directory named ‘templates’ inside the main project folder. We will be use this as our root directory to store/save templates.
+Create a directory named ‘templates’ inside the main project folder.
+We will be use this as our root directory to store/save templates.
 
 Also make the following changes inside the settings.py file.
 ```sh
@@ -75,11 +71,7 @@ Also make the following changes inside the settings.py file.
 'DIRS': [os.path.join(BASE_DIR, 'templates')],
  ]
  ```
- >Add this to the DIRS
-
-refer to the below image.
-
-
+ ![Templates](./images/6.png)
 
 ### __Creating the base template:__
 
@@ -198,10 +190,15 @@ INSTALLED_APPS = (
     'allauth.account',
     'Allauth.socialaccount',
 
-SITE_ID = 2.  # depends on you site sequence
+SITE_ID = 2  # depends on you site sequence
 ```
->Note: Also add the following code to specify which site id are you using for authentication.
 Source: https://django-allauth.readthedocs.io/en/latest/installation.html
+
+![Templates](./images/7.png)
+
+![Templates](./images/8.png)
+
+![Templates](./images/9.png)
 
 ###__Facebook Authentication:__
 Using django-Allauth we will use facebook to allows users to sign in to our website.
@@ -211,11 +208,16 @@ __Steps:__
 
 1. Login into your django websites admin panel.
 2. Goto social account administration. Click Add new social application.
+![Templates](./images/a.png)
 3. Select Facebook as the social provider and Name will also be facebook.
+![Templates](./images/b.png)
 4. Now log in facebook developer and click create a new App
+![Templates](./images/c.png)
 5. Select Facebook Login as the product and the WWW as your platform.
+![Templates](./images/d.png)
 6. In the next window Provide with your Site url.
 > NOte: In our case it will be https://127.0.0.1/8080.
+![Templates](./images/e.png)
 7. Save it and then skip the rest steps. 
 8. Now we need to configure this facebook apps client id and secret key inside our social account.
 9. We will find the client id and secret key inside the app/settings/basic
