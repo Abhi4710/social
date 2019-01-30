@@ -11,7 +11,7 @@ __Syntax:__
 django-admin startproject social
 ```
 ![Creating Project]
-(./images/1.png)
+(~/images/1.png)
 
 ### Migration and Running our server.
 
