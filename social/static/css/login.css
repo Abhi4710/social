@@ -1,0 +1,22 @@
+
+    .container {
+    background: white;
+    margin-top: 10%;
+    border-radius: 50px;
+    box-shadow: 0px 6px 20px #484848;
+    padding-bottom: 5%;
+        padding-top: 5%;
+}
+.row > .col {
+    border-right: 1px solid #dcdcdc;
+    padding-left: 5%;
+}
+.formFooter{
+    padding-left: 20%;
+}
+.login-btn{
+padding-left: 30%;
+}
+.dropdown-btn {
+    padding-left: 30%;
+    }

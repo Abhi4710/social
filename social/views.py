@@ -6,9 +6,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.core.validators import ValidationError
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm, PasswordResetForm
 from django.contrib.auth import update_session_auth_hash
-from django import forms
 
 
 def home(request):
@@ -77,7 +76,7 @@ def user_register(request):
                 if user:
                     login(request, user)
                     return redirect('home')
-            return HttpResponseRedirect(reverse('register'))
+            return HttpResponseRedirect(reverse('user_register'))
     else:
         form = UserRegistrationForm()
         args = {'form': form}
@@ -101,7 +100,7 @@ def user_edit(request):
             return render(request, 'editprofile.html', {'form': form})
     else:
         return render(request, 'editprofile.html', {'form': form})
-    return redirect('profile')
+    return redirect('user_profile')
 
 
 @login_required()
@@ -116,17 +115,23 @@ def pass_change(request):
     form = PasswordChangeForm(request.user)
     args = {'form': form}
     if request.method == 'POST':
-        form = PasswordChangeForm(request.POST, request.user)
+        form = PasswordChangeForm(user=request.user, data=request.POST)
         if form.is_valid():
-            user = User.objects.get(user=request.user)
-            user.password = form.cleaned_data.get['new_password1']
+            user = form.save()
             update_session_auth_hash(request, user)  # Important!
             messages.success(request, 'Your password was successfully updated!')
-            return redirect('profile')
+            logout(request)
+            return redirect('user_login')
         else:
             return render(request, 'pass.html', args)
     else:
         return render(request, 'pass.html', args)
+
+
+def password_reset(request):
+    form = PasswordResetForm()
+    if request.method == 'GET':
+        return render(request, 'pass-reset.html', {'form': form})
 
 
 

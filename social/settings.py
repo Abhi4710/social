@@ -45,7 +45,8 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'sslserver',
     'django_extensions',
-    'detailprofile'
+    'detailprofile',
+    'password_reset'
 ]
 
 SITE_ID = 2
@@ -136,8 +137,22 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "social/static"),
+   # '/var/www/static/',
+]
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static_cdn")
+
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'social/media')
 # SESSION_COOKIE_DOMAIN = 'none'
 LOGIN_REDIRECT_URL = 'profile'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = '' # mail service smtp
+EMAIL_HOST_USER = '' # email id
+EMAIL_HOST_PASSWORD = '' #password
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
