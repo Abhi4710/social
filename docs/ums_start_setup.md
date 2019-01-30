@@ -10,7 +10,7 @@ __Syntax:__
 ```sh
 django-admin startproject social
 ```
-![Creating Project](../images/1.png)
+![Creating Project](./images/1.png)
 
 ### Migration and Running our server.
 
